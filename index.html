@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aplicação de Texto com Seções, Categorias, Busca e Copiar</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Portal de Fraseologias</h1>
+
+      <!-- Seção para adicionar novos textos com categoria e subcategoria -->
+      <div class="section">
+        <h2>Adicionar Fraseologias/Máscaras</h2>
+        <!-- Seletor de categoria -->
+        <label for="category">Categoria:</label>
+        <select id="category" onchange="atualizarSubcategorias()">
+          <!-- Opções de categorias principais -->
+          <option value="Fraseologias">Fraseologias</option>
+          <option value="Máscaras">Máscaras</option>
+          <option value="Observações">Observações</option>
+        </select>
+
+        <!-- Seletor de subcategoria que será atualizado dinamicamente -->
+        <label for="subcategory">Subcategoria:</label>
+        <select id="subcategory">
+          <!-- Subcategorias são carregadas dinamicamente via JavaScript -->
+        </select>
+
+        <!-- Campo de entrada para o texto -->
+        <input type="text" id="text-input" placeholder="Digite seu texto" />
+        <!-- Botão para adicionar o texto -->
+        <button onclick="adicionarTexto()">Adicionar</button>
+      </div>
+
+      <!-- Seção para buscar textos já adicionados -->
+      <div class="section search">
+        <h2>Buscar Textos</h2>
+        <!-- Campo de entrada para realizar a busca por texto -->
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Digite para buscar"
+          oninput="filtrarTextos()"
+        />
+
+        <!-- Filtros para buscar por categoria e subcategoria -->
+        <label for="filter-category">Filtrar por Categoria:</label>
+        <select id="filter-category" onchange="filtrarTextos()">
+          <!-- Opções para filtragem por categoria -->
+          <option value="Todos">Todos</option>
+          <option value="Trabalho">Fraseologias</option>
+          <option value="Pessoal">Máscaras</option>
+        </select>
+
+        <label for="filter-subcategory">Filtrar por Subcategoria:</label>
+        <select id="filter-subcategory" onchange="filtrarTextos()">
+          <!-- Opções para filtragem por subcategoria -->
+          <option value="Todos">Todos</option>
+          <option value="Máscaras">Contestação</option>
+          <option value="Fraseologias">Mudend</option>
+          <option value="Estudos">Rentabilização</option>
+        </select>
+
+        <!-- Botão para limpar os filtros de busca -->
+        <button class="clear-btn" onclick="limparBusca()">Limpar Busca</button>
+      </div>
+
+      <!-- Seção que exibirá os textos filtrados -->
+      <div class="section">
+        <h2>Resultados</h2>
+        <div class="text-list">
+          <!-- Textos adicionados aparecerão aqui -->
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

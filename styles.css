@@ -1,0 +1,93 @@
+/* Estilos básicos para a página */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* Estilos para cada seção (como Adicionar Texto e Buscar Textos) */
+.section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Estilo para a exibição de categorias e botões */
+.category {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Estilo para o botão de copiar */
+.copy-btn {
+  margin-left: 10px;
+  background-color: #007BFF;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+/* Estilo aplicado ao botão de copiar quando o texto foi copiado */
+.copy-btn.copied {
+  background-color: #28a745;
+}
+
+/* Botão para limpar a busca */
+.clear-btn {
+  background-color: #FF6347;
+  margin-left: 10px;
+}
+
+/* Estilos para inputs e selects */
+input, select {
+  padding: 10px;
+  margin-right: 10px;
+}
+
+/* Estilos para a lista de textos filtrados */
+.text-list {
+  margin-top: 20px;
+  display: none; /* Inicialmente oculto */
+}
+
+/* Estilos para a área de busca */
+.search {
+  margin-bottom: 20px;
+}
+
+.search input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+/* Classe oculta usada para esconder itens não filtrados */
+.hidden {
+  display: none;
+}
