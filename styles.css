@@ -1,5 +1,6 @@
 /* Estilos básicos para a página */
 body {
+
   font-family: Arial, sans-serif;
   margin: 20px;
 }
@@ -24,6 +25,7 @@ h1 {
 
 /* Estilo para a exibição de categorias e botões */
 .category {
+  
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -45,9 +47,9 @@ button:hover {
 
 /* Estilo para o botão de copiar */
 .copy-btn {
-  margin-left: 10px;
+  margin: 10px;
   background-color: #007BFF;
-  padding: 5px;
+  padding: 8px;
   border-radius: 3px;
   font-size: 12px;
 }
@@ -60,7 +62,7 @@ button:hover {
 /* Botão para limpar a busca */
 .clear-btn {
   background-color: #FF6347;
-  margin-left: 10px;
+  margin: 10px;
 }
 
 /* Estilos para inputs e selects */
@@ -81,6 +83,7 @@ input, select {
 }
 
 .search input {
+  box-sizing: border-box;
   width: 100%;
   padding: 10px;
   margin-top: 10px;
