@@ -5,6 +5,7 @@ const subcategorias = {
   Observações: ["Mudend", "Contestação", "Rentabilização"],
 };
 
+// Função para atualizar subcategorias dinamicamente
 function atualizarSubcategorias() {
   const categorySelect = document.getElementById("category").value;
   const subcategorySelect = document.getElementById("subcategory");
@@ -21,6 +22,7 @@ function atualizarSubcategorias() {
   });
 }
 
+// Função para adicionar texto
 function adicionarTexto() {
   const category = document.getElementById("category").value;
   const subcategory = document.getElementById("subcategory").value;
@@ -46,10 +48,15 @@ function adicionarTexto() {
 
   textList.appendChild(newTextItem);
 
+  // Atualizar o localStorage com o novo texto
+  salvarTextosNoLocalStorage();
+
   // Limpar o campo de entrada
   document.getElementById("text-input").value = "";
+  textList.style.display = "block"; // Exibir a lista quando houver textos
 }
 
+// Função para filtrar textos com base nos critérios de busca
 function filtrarTextos() {
   const searchInput = document
     .getElementById("search-input")
@@ -86,6 +93,7 @@ function filtrarTextos() {
     : "none";
 }
 
+// Função para limpar a busca
 function limparBusca() {
   // Limpar os campos de busca, categoria e subcategoria
   document.getElementById("search-input").value = "";
@@ -102,6 +110,7 @@ function limparBusca() {
   document.querySelector(".text-list").style.display = "none";
 }
 
+// Função para copiar texto
 function copiarTexto(button) {
   const textToCopy =
     button.parentNode.querySelector(".text-content").textContent;
@@ -122,10 +131,57 @@ function copiarTexto(button) {
     });
 }
 
+// Função para remover texto
 function removerTexto(button) {
   const textItem = button.parentNode; // Obtém o item de texto correspondente
   textItem.remove(); // Remove o item da lista
+  salvarTextosNoLocalStorage(); // Atualizar localStorage após remoção
+}
+
+// Função para salvar os textos no localStorage
+function salvarTextosNoLocalStorage() {
+  const textItems = document.querySelectorAll(".text-list .category");
+  const textos = [];
+
+  textItems.forEach((item) => {
+    const category = item.getAttribute("data-category");
+    const subcategory = item.getAttribute("data-subcategory");
+    const textContent = item.querySelector(".text-content").textContent;
+    textos.push({ category, subcategory, textContent });
+  });
+
+  // Salvar a lista de textos no localStorage
+  localStorage.setItem("textos", JSON.stringify(textos));
+}
+
+// Função para carregar textos salvos no localStorage
+function carregarTextosDoLocalStorage() {
+  const textosSalvos = JSON.parse(localStorage.getItem("textos")) || [];
+
+  const textList = document.querySelector(".text-list");
+  textosSalvos.forEach((texto) => {
+    const newTextItem = document.createElement("div");
+    newTextItem.classList.add("category");
+    newTextItem.setAttribute("data-category", texto.category); // Atributo da categoria
+    newTextItem.setAttribute("data-subcategory", texto.subcategory); // Atributo da subcategoria
+
+    newTextItem.innerHTML = `
+            <div><strong>${texto.category}</strong> (${texto.subcategory}): <span class="text-content">${texto.textContent}</span></div>
+            <button class="copy-btn" onclick="copiarTexto(this)">Copiar</button>
+            <button class="remove-btn" onclick="removerTexto(this)">Remover</button>
+        `;
+
+    textList.appendChild(newTextItem);
+  });
+
+  // Exibir a lista se houver textos salvos
+  if (textosSalvos.length > 0) {
+    textList.style.display = "block";
+  }
 }
 
 // Atualizar subcategorias ao carregar a página
 atualizarSubcategorias();
+
+// Carregar os textos salvos ao carregar a página
+window.onload = carregarTextosDoLocalStorage;
